@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  sudo: true
+
+  tasks:
+    - name: Create a demo group
+      group:
+        name: "{{ demo_group_name }}"
+        state: present
+
+    - name: Create a demo user
+      user:
+        name: "{{ demo_user_name }}"
+        comment: "Demo user"
+        group: "{{ demo_group_name }}"
+        state: present
+
+    - name: Create a demo file
+      template:
+        src: /vagrant/templates/demo_file.j2
+        dest: "/home/{{ demo_user_name }}/demo_file"
+        owner: "{{ demo_user_name }}"
+        group: "{{ demo_group_name }}" 
+
