@@ -1,14 +1,17 @@
 ---
+# An example play http://docs.ansible.com/glossary.html#plays
 - hosts: localhost
   sudo: true
 
   tasks:
     - name: Create a demo group
+      # http://docs.ansible.com/group_module.html
       group:
         name: "{{ demo_group_name }}"
         state: present
 
     - name: Create a demo user
+      # http://docs.ansible.com/user_module.html
       user:
         name: "{{ demo_user_name }}"
         comment: "Demo user"
@@ -16,8 +19,11 @@
         state: present
 
     - name: Create a demo file
+      # http://docs.ansible.com/template_module.html
       template:
         src: /vagrant/templates/demo_file.j2
+        # The next line needs to be quoted:
+        # http://docs.ansible.com/playbooks_variables.html#hey-wait-a-yaml-gotcha
         dest: "/home/{{ demo_user_name }}/demo_file"
         owner: "{{ demo_user_name }}"
         group: "{{ demo_group_name }}" 
