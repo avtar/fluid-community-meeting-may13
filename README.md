@@ -20,8 +20,17 @@ You will need to install the following:
 
 ## Getting Started
 
-The Vagrantfile allows one to allocate a specific amount of RAM or virtual CPUs using the ``VM_RAM`` and ``VM_CPUS`` environment variables. For example the following will allocate 2Gb of memory and start the VM:
+The Vagrantfile allows one to allocate a specific amount of RAM or virtual CPUs using the ``VM_RAM`` and ``VM_CPUS`` environment variables. For example the following will allocate 2GB of memory and start the VM:
 
     VM_RAM=2048 vagrant up
+
+If this is your first time starting this VM then the shell provisioner in the Vagrantfile will be executed. The shell provisioner will run the ``jenkins.yml`` playbook. If you would like to run the provisioner again you can use the following command:
+
+    vagrant provision
+
+You should also try the ``vagrant ssh`` command to log into the VM and run the ``example.yml`` playbook:
+
+    vagrant ssh
+    ansible-playbook /vagrant/example.yml
 
 
